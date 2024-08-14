@@ -200,9 +200,18 @@ function getChannelByName(channelName, channels) {
  * BONUS: use iteration methods `.find()` and `.some()`
  ****************************************************************/
 function getChannelByVideoTitle(videoTitle, channels) {
-  channel.video.find(()=>)
+  let channelFound = channels.find((channel) => {
+    return channel.videos.some((video) => {
+      if (video.title == videoTitle) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  });
+  return channelFound;
 }
- console.log(getChannelByVideoTitle("The Universal S", channels));
+//console.log(getChannelByVideoTitle("The Universal S", channels));
 
 /**************************************************************
  * searchChannels(query, channels):
@@ -213,6 +222,13 @@ function getChannelByVideoTitle(videoTitle, channels) {
  * Hint: use string method `.includes()` and iteration method `.filter()`
  ****************************************************************/
 function searchChannels(query, channels) {
-  // Your code here
+  return channels.filter((channel) => {
+    if (channel.name.includes(query) || channel.description.includes(query)) {
+      return true;
+    } else {
+      return false;
+    }
+  });
 }
-// console.log(searchChannels("the", channels))
+
+console.log(searchChannels("the", channels));
